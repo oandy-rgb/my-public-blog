@@ -41,34 +41,29 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
+    // === 移到這裡：這會讓它出現在首頁內容的最上方 ===
+    Component.ConditionalRender({
+      component: Component.RecentNotes({
+        title: "最新文章列表",
+        limit: 5,
+        filter: (f) => f.slug !== "index",
+        sort: (f1, f2) =>
+          (f2.dates?.modified?.getTime() ?? 0) - (f1.dates?.modified?.getTime() ?? 0),
+      }),
+      condition: (page) => page.fileData.slug === "index" || page.fileData.slug === "",
+    }),
+    // ===========================================
   ],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
       components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
+        { Component: Component.Search(), grow: true },
         { Component: Component.Darkmode() },
         { Component: Component.ReaderMode() },
       ],
     }),
-    // === 加入這段條件渲染的最近更新 ===
-    Component.ConditionalRender({
-      component: Component.RecentNotes({
-        title: "最近更新",
-        limit: 5,
-        filter: (f) => f.slug !== "index", // 不要顯示首頁自己
-        // 依照最後修改時間排序
-        sort: (f1, f2) =>
-          (f2.dates?.modified?.getTime() ?? 0) - (f1.dates?.modified?.getTime() ?? 0),
-      }),
-      // 判斷條件：只有當頁面是首頁 (index) 時才顯示
-      condition: (page) => page.fileData.slug === "index" || page.fileData.slug === "",
-    }),
-    // ===================================
     Component.Explorer(),
   ],
   right: [
