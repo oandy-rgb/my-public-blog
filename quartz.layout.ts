@@ -27,6 +27,7 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       GitHub: "https://github.com/oandy-rgb/MyPublicBlog",
       Discord: "https://discord.gg/bp67EWpMch",
+      Rss: "https://oandy-rgb.github.io/my-public-blog/index.xml",
     },
   }),
 }
