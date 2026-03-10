@@ -9,18 +9,18 @@ export const sharedPageComponents: SharedLayout = {
     Component.Comments({
       provider: "giscus",
       options: {
-        repo: "oandy-rgb/MyPublicBlog",
+        repo: "oandy-rgb/my-public-blog",
         repoId: "R_kgDOQ9sT0Q",
         category: "Announcements",
         categoryId: "DIC_kwDOQ9sT0c4C1UhA",
-        lightTheme: "light_high_contrast", 
+        lightTheme: "light_high_contrast",
         darkTheme: "transparent_dark",
         mapping: "pathname",
         strict: true,
         reactionsEnabled: true,
         inputPosition: "bottom",
         lang: "zh-TW",
-      }
+      },
     }),
   ],
   footer: Component.Footer({
@@ -93,4 +93,3 @@ export const defaultListPageLayout: PageLayout = {
   ],
   right: [],
 }
-
